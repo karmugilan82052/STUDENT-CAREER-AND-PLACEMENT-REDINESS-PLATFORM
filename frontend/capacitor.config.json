@@ -1,0 +1,6 @@
+{
+  "appId": "com.careerready.app",
+  "appName": "CareerReady",
+  "webDir": "build",
+  "bundledWebRuntime": false
+}

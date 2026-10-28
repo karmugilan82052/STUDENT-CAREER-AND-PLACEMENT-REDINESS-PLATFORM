@@ -1,0 +1,15 @@
+{
+  "name": "functions",
+  "description": "Firebase Cloud Functions for CareerScence Placement Portal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "engines": {
+    "node": "18"
+  },
+  "dependencies": {
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1",
+    "@google/generative-ai": "^0.1.1"
+  },
+  "private": true
+}

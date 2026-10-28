@@ -1,0 +1,35 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Auth helpers
+    function isAuthed() {
+      return request.auth != null;
+    }
+    
+    // Verify user owns the directory paths
+    function isOwner(userId) {
+      return isAuthed() && request.auth.uid == userId;
+    }
+
+    // Resume uploads
+    match /ResumeFiles/{userId}/{fileName} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // Certifications uploads
+    match /Certificates/{userId}/{fileName} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // Profile photos
+    match /ProfilePhotos/{userId}/{fileName} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // Projects uploads
+    match /ProjectFiles/{userId}/{fileName} {
+      allow read, write: if isOwner(userId);
+    }
+  }
+}
