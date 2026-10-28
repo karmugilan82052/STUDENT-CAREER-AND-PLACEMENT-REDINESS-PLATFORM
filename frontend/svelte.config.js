@@ -1,15 +1,13 @@
-import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-auto';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		adapter: adapter({
-			pages: 'build',
-			assets: 'build',
-			fallback: 'index.html',
-			precompress: false,
-			strict: false
-		})
+		adapter: adapter()
+	},
+	onwarn: (warning, handler) => {
+		if (warning.code && warning.code.startsWith('a11y_')) return;
+		handler(warning);
 	}
 };
 
