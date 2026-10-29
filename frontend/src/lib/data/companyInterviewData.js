@@ -273,6 +273,30 @@ export const COMPANY_CODING_CHALLENGES = [
 - \`-10^9 <= arr[i] <= 10^9\`
 - Time Complexity Target: **O(N)**, Space: **O(1)**`,
     boilerplates: {
+      javascript: `/**
+ * Return an object: { secondSmallest: number, secondLargest: number }
+ * If either does not exist, return -1 for that value.
+ * @param {number[]} arr
+ * @return {{ secondSmallest: number, secondLargest: number }}
+ */
+function solution(arr) {
+  // Write your code here
+  
+}`,
+      python: `def solution(arr):
+    # Return (second_smallest, second_largest)
+    # If either does not exist, return -1 for that value.
+    # Write your code here
+    pass`,
+      java: `public class Solution {
+    public static int[] solution(int[] arr) {
+        // Return new int[]{ secondSmallest, secondLargest }
+        // Write your code here
+        return new int[]{-1, -1};
+    }
+}`
+    },
+    solutions: {
       javascript: `function solution(arr) {
   // Return an object: { secondSmallest: number, secondLargest: number }
   let smallest = Infinity, secondSmallest = Infinity;
@@ -367,6 +391,30 @@ export const COMPANY_CODING_CHALLENGES = [
 - \`1 <= m, n <= 20\`
 - Zoho Evaluation Rule: Do not use built-in flattening shortcuts. Maintain explicit row and column boundary pointers.`,
     boilerplates: {
+      javascript: `/**
+ * Return all elements of the matrix in spiral order (clockwise).
+ * @param {number[][]} matrix
+ * @return {number[]}
+ */
+function solution(matrix) {
+  // Write your code here
+  
+}`,
+      python: `def solution(matrix):
+    # Return list of matrix elements in clockwise spiral order
+    # Write your code here
+    pass`,
+      java: `import java.util.*;
+
+public class Solution {
+    public static List<Integer> solution(int[][] matrix) {
+        // Return elements in clockwise spiral order
+        // Write your code here
+        return new ArrayList<>();
+    }
+}`
+    },
+    solutions: {
       javascript: `function solution(matrix) {
   if (!matrix || matrix.length === 0) return [];
   const result = [];
@@ -414,7 +462,33 @@ export const COMPANY_CODING_CHALLENGES = [
         if left <= right:
             for i in range(bottom, top - 1, -1): res.append(matrix[i][left])
             left += 1
-    return res`
+    return res`,
+      java: `import java.util.*;
+
+public class Solution {
+    public static List<Integer> solution(int[][] matrix) {
+        List<Integer> res = new ArrayList<>();
+        if (matrix == null || matrix.length == 0) return res;
+        int top = 0, bottom = matrix.length - 1;
+        int left = 0, right = matrix[0].length - 1;
+        
+        while (top <= bottom && left <= right) {
+            for (int j = left; j <= right; j++) res.add(matrix[top][j]);
+            top++;
+            for (int i = top; i <= bottom; i++) res.add(matrix[i][right]);
+            right--;
+            if (top <= bottom) {
+                for (int j = right; j >= left; j--) res.add(matrix[bottom][j]);
+                bottom--;
+            }
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) res.add(matrix[i][left]);
+                left++;
+            }
+        }
+        return res;
+    }
+}`
     },
     testCases: [
       { input: "[[1, 2, 3], [4, 5, 6], [7, 8, 9]]", expected: "[1, 2, 3, 6, 9, 8, 7, 4, 5]" },
@@ -442,6 +516,28 @@ export const COMPANY_CODING_CHALLENGES = [
 - String contains only lowercase English alphabets.
 - Time Complexity Target: **O(N)**.`,
     boilerplates: {
+      javascript: `/**
+ * Compress consecutive repeating characters with frequency count (e.g. "aaabbc" -> "a3b2c1").
+ * @param {string} str
+ * @return {string}
+ */
+function solution(str) {
+  // Write your code here
+  
+}`,
+      python: `def solution(s):
+    # Compress consecutive repeating characters with count (e.g. "aaabbc" -> "a3b2c1")
+    # Write your code here
+    pass`,
+      java: `public class Solution {
+    public static String solution(String str) {
+        // Return compressed string (e.g. "a3b2c1")
+        // Write your code here
+        return "";
+    }
+}`
+    },
+    solutions: {
       javascript: `function solution(str) {
   if (!str) return "";
   let result = "";
@@ -468,7 +564,23 @@ export const COMPANY_CODING_CHALLENGES = [
         else:
             res.append(s[i] + str(count))
             count = 1
-    return "".join(res)`
+    return "".join(res)`,
+      java: `public class Solution {
+    public static String solution(String str) {
+        if (str == null || str.isEmpty()) return "";
+        StringBuilder sb = new StringBuilder();
+        int count = 1;
+        for (int i = 0; i < str.length(); i++) {
+            if (i + 1 < str.length() && str.charAt(i) == str.charAt(i + 1)) {
+                count++;
+            } else {
+                sb.append(str.charAt(i)).append(count);
+                count = 1;
+            }
+        }
+        return sb.toString();
+    }
+}`
     },
     testCases: [
       { input: '"aaabbc"', expected: '"a3b2c1"' },
@@ -497,6 +609,29 @@ export const COMPANY_CODING_CHALLENGES = [
 - \`1 <= coins[i] <= 2^31 - 1\`
 - \`0 <= amount <= 10^4\``,
     boilerplates: {
+      javascript: `/**
+ * Return the fewest number of coins needed to make up amount, or -1 if impossible.
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
+function solution(coins, amount) {
+  // Write your code here
+  
+}`,
+      python: `def solution(coins, amount):
+    # Return fewest number of coins needed to make up amount, or -1 if impossible
+    # Write your code here
+    pass`,
+      java: `public class Solution {
+    public static int solution(int[] coins, int amount) {
+        // Return fewest number of coins needed, or -1 if impossible
+        // Write your code here
+        return -1;
+    }
+}`
+    },
+    solutions: {
       javascript: `function solution(coins, amount) {
   const dp = new Array(amount + 1).fill(Infinity);
   dp[0] = 0;
@@ -518,7 +653,24 @@ export const COMPANY_CODING_CHALLENGES = [
         for c in coins:
             if i - c >= 0:
                 dp[i] = min(dp[i], dp[i - c] + 1)
-    return dp[amount] if dp[amount] != float('inf') else -1`
+    return dp[amount] if dp[amount] != float('inf') else -1`,
+      java: `import java.util.Arrays;
+
+public class Solution {
+    public static int solution(int[] coins, int amount) {
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, amount + 1);
+        dp[0] = 0;
+        for (int i = 1; i <= amount; i++) {
+            for (int c : coins) {
+                if (i - c >= 0) {
+                    dp[i] = Math.min(dp[i], dp[i - c] + 1);
+                }
+            }
+        }
+        return dp[amount] > amount ? -1 : dp[amount];
+    }
+}`
     },
     testCases: [
       { input: "coins = [1, 2, 5], amount = 11", expected: "3" },
@@ -554,6 +706,28 @@ An input string is valid if:
 - **Input:** \`"(]"\`
 - **Output:** \`false\``,
     boilerplates: {
+      javascript: `/**
+ * Determine if the input bracket string is valid.
+ * @param {string} s
+ * @return {boolean}
+ */
+function solution(s) {
+  // Write your code here
+  
+}`,
+      python: `def solution(s):
+    # Determine if input bracket string is valid.
+    # Write your code here
+    pass`,
+      java: `public class Solution {
+    public static boolean solution(String s) {
+        // Return true if valid bracket string, false otherwise
+        // Write your code here
+        return false;
+    }
+}`
+    },
+    solutions: {
       javascript: `function solution(s) {
   const stack = [];
   const map = {
@@ -583,7 +757,21 @@ An input string is valid if:
         elif char in mapping:
             if not stack or stack.pop() != mapping[char]:
                 return False
-    return len(stack) == 0`
+    return len(stack) == 0`,
+      java: `import java.util.Stack;
+
+public class Solution {
+    public static boolean solution(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
+            if (c == '(') stack.push(')');
+            else if (c == '{') stack.push('}');
+            else if (c == '[') stack.push(']');
+            else if (stack.isEmpty() || stack.pop() != c) return false;
+        }
+        return stack.isEmpty();
+    }
+}`
     },
     testCases: [
       { input: '"()[]{}"', expected: "true" },
@@ -615,6 +803,28 @@ An input string is valid if:
 - \`0 <= s.length <= 5 * 10^4\`
 - Target Time Complexity: **O(N)** using Sliding Window.`,
     boilerplates: {
+      javascript: `/**
+ * Return length of the longest substring without duplicate characters.
+ * @param {string} s
+ * @return {number}
+ */
+function solution(s) {
+  // Write your code here
+  
+}`,
+      python: `def solution(s):
+    # Return length of the longest substring without duplicate characters
+    # Write your code here
+    pass`,
+      java: `public class Solution {
+    public static int solution(String s) {
+        // Return length of the longest substring without duplicate characters
+        // Write your code here
+        return 0;
+    }
+}`
+    },
+    solutions: {
       javascript: `function solution(s) {
   let maxLength = 0;
   let left = 0;
@@ -640,7 +850,24 @@ An input string is valid if:
             left = last_seen[char] + 1
         last_seen[char] = right
         max_len = max(max_len, right - left + 1)
-    return max_len`
+    return max_len`,
+      java: `import java.util.HashMap;
+
+public class Solution {
+    public static int solution(String s) {
+        int maxLen = 0, left = 0;
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int right = 0; right < s.length; right++) {
+            char c = s.charAt(right);
+            if (map.containsKey(c) && map.get(c) >= left) {
+                left = map.get(c) + 1;
+            }
+            map.put(c, right);
+            maxLen = Math.max(maxLen, right - left + 1);
+        }
+        return maxLen;
+    }
+}`
     },
     testCases: [
       { input: '"abcabcbb"', expected: "3" },

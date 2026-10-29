@@ -1007,11 +1007,30 @@ function generateMockEvaluation(questions, answers) {
 }
 
 function generateMockCodeEvaluation(challenge, code) {
-  const codeLen = (code || "").trim().length;
+  const trimmed = (code || "").trim();
+  const codeLen = trimmed.length;
+  const isStarterOnly = (trimmed.includes("Write your code here") && codeLen < 240) || (trimmed.includes("pass") && codeLen < 140) || codeLen < 60;
+
+  if (isStarterOnly) {
+    return {
+      score: 20,
+      timeComplexity: "Unimplemented",
+      spaceComplexity: "Unimplemented",
+      correctness: 0,
+      codeQuality: 30,
+      feedback: `Starter boilerplate detected for "${challenge.title}". Please write your algorithm logic before requesting an AI audit.`,
+      strengths: ["Template loaded successfully."],
+      suggestions: [
+        "Implement the algorithm logic according to the problem requirements.",
+        "Ensure you return the expected data type and handle edge cases."
+      ]
+    };
+  }
+
   const hasLoop = /for|while|forEach|map|filter/.test(code);
   const hasReturn = /return/.test(code);
 
-  const score = codeLen > 50 && hasReturn ? (hasLoop ? 88 : 75) : 60;
+  const score = codeLen > 100 && hasReturn ? (hasLoop ? 88 : 78) : 65;
   
   return {
     score,
